@@ -1,0 +1,15 @@
+name: Concurrency test
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: merge number
+        required: true
+concurrency:
+  group: ios-build-main
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "build for merge ${{ inputs.n }}"; sleep 120; echo "done ${{ inputs.n }}"
